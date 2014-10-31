@@ -1,1 +1,136 @@
 
+/* utility classes */
+.hide{
+display:none;
+}
+
+/* rails flashes */
+.flash {
+  border: 1px solid #a0a0a0;
+  padding: 1em;
+  width: 80%;
+}
+
+.flash strong {
+  color:#808080;
+  size: 0.8em;
+}
+
+.flash.notice {
+  background: #262;
+}
+
+.flash.error {
+  background: #622;
+}
+
+#isbn-validation {
+	border: 1px solid #ccc;
+	padding: 0.2em 1em;
+}
+
+.cover_photo {
+	border: 1px solid white;
+}
+
+.description {
+	max-width: 60em;
+}
+
+
+.description p {
+	text-align: justify;
+	max-width: 50em;
+}
+
+.description .cover_photo {
+	float: right;
+	margin-left: 4em;
+}
+
+.highlight {
+	color: yellow;
+	font-weight :bold;
+}
+
+.add-tag, .remove-tag {
+	font-size: 1.6em;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 0 0.5em;
+}
+
+.add-tag {
+	color: green;
+}
+
+.remove-tag {
+	color: red;
+}
+
+#tagList {
+	list-style-type: none;
+}
+
+#tagList li {
+	display: inline-block;
+	width: 50%;
+}
+
+.itemActions {
+	margin-top: 1ex;
+	float: right;
+}
+
+.itemActions .button-to, .itemActions .button-to div {
+	display: inline;
+}
+
+.itemActions .button-to {
+	padding: 1em;
+}
+
+.requests {
+	float: right;
+}
+
+.currentLoan .button-to {
+	padding-top: 1em;
+	padding-left: 1em;
+}
+
+.items {
+	width: 100%;
+}
+
+.items th {
+	text-align: center;
+}
+
+.items td {
+	/* be nice to books without covers */
+	height: 200px;
+}
+
+.items .title {
+	font-size: 1.5em;
+	padding-left: 1em;
+}
+
+.fieldWithErrors input {
+	background: #d99;
+}
+
+.comment {
+	margin-bottom: 1em;
+}
+
+.comment .byline {
+	padding-left: 2em;
+}
+
+.formats {
+	float: right;
+	list-style-type: none;
+	padding-right: 5em;
+}
