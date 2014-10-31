@@ -6,4 +6,4 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Region.create :name => 'Edmonton', :subdomain => 'edmonton'
+Region.create :name => 'Amsterdam', :subdomain => 'amsterdam'
