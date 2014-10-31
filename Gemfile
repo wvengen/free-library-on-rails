@@ -3,8 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.2.3'
 gem 'app_config', '~> 2.5.3'
 
-gem 'mysql2'
-
 gem 'nokogiri'
 
 gem 'will_paginate', '~> 3.0'
@@ -22,4 +20,9 @@ gem 'jquery-ui-rails'
 group :development, :test do
   gem 'sqlite3' # for tests
   gem 'simplecov', :require => false
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
