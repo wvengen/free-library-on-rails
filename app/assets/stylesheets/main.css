@@ -141,3 +141,17 @@ display:none;
 	display: block;
 	float: right;
 }
+
+/* columned content */
+.two-columns, .three-columns { margin: auto; }
+.two-columns .column, .three-columns .column { vertical-align: top; }
+.two-columns .column > .content, .three-columns .column > .content {
+	border: 1px solid #f9f9f9;
+	padding-left: 12px;
+	padding-right: 12px;
+	margin: 4px;
+}
+
+.two-columns .column { width: 49%; margin: 0; padding: 0; display: inline-block; }
+.three-columns .column { width: 32%; margin: 0; padding: 0; display: inline-block; }
+

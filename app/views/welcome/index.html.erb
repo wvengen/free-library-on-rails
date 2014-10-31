@@ -1,20 +1,20 @@
-<h1>What is <%= site_name(short: true) %>?</h1>
-<p>The <%= site_name %> is a book, music, and video sharing community<% if r=site_region(long: true) %> operating in <%= r %><% end %>.</p>
+<p style="text-align: center">Welcome to <%= site_name %>, the book and video sharing community of <a href="http://www.amsterdam50.nl/">Amsterdam50</a> in Amsterdam, The Netherlands.</p>
 
-<p>efl operates on library-like principles where each person can lend items upon request to other participants. We promote a bottom-up and de-centralized approach to sharing culture that can help you find cool people and share interesting material with them.</p>
+<div class="two-columns">
+	<div class="column"><div class="content">
+		<h2>Recent additions</h2>
+		<ul>
+		</ul>
+	</div></div>
 
-<h1>How does it work?</h1>
-<p><%= link_to 'Create an account', '/account/signup'%>, then list the books and videos that you own.
-You will quickly be able to borrow from the multitude of books and other material in other
-collections. You can search for specific authors or titles, browse individual
-collections, find nearby users, or find people who like books in common with yours.
-Read the reviews and then write your own when you finish the book!</p>
+	<div class="column"><div class="content">
+		<h2>Recent loans</h2>
+		<ul>
+		</ul>
+	</div></div>
+</div>
 
-<p>When the owner of a book or video you're interested in has time for you to pick it up or meet you,
-then you can borrow books and video (with a due date set by the owner).</p>
+<% if current_user %>
+	<p>We have <%= User.count %> members: <%= User.order('activated_at DESC').map{|u| user_link(u)}.join(", ").html_safe %>.</p>
+<% end %>
 
-<p>Returning books late will get you negative feedback, while returning books promptly
-will get you positive feedback. <strong>You are never under any obligation to lend an item if you don't feel comfortable doing so.</strong></p>
-
-<h1>How do you manage trust?</h1>
-<p>While this is a community site based on good will, we will have an ebay-style feedback system for managing trust. Lenders have the opportunity to leave positive or negative feedback for borrowers when an item is returned. These positive or negative points contribute to an overall "score" which lenders can use to gauge the trustworthiness or responsibility of a borrower. Lenders can also leave comments along with the points to be more specific.</p>
