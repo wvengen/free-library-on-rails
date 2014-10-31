@@ -1,7 +1,8 @@
 module LayoutsHelper
 	def navitab(text, url, active)
-		klass = active ? 'activenavitab' : 'navitab'
-		link_to(text, url, :class => klass) + content_tag(:span, ' | ', class: 'hide')
+		li_opts = {}
+		li_opts[:id] = 'active' if active
+		content_tag(:li, link_to(text, url), **li_opts)
 	end
 
 	def page_title

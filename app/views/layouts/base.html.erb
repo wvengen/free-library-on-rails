@@ -5,52 +5,57 @@
 	<title><%= page_title %></title>
 
 	<%= stylesheet_link_tag    'application' %>
-	<%= stylesheet_link_tag    AppConfig.css_style %>
+	<%= stylesheet_link_tag    'http://cdn2.editmysite.com/css/sites.css' %>
+	<%= stylesheet_link_tag    'http://www.amsterdam50.nl/files/main_style.css' %>
+	<%= stylesheet_link_tag    'amsterdam50-extra.css' %>
+	<%= stylesheet_link_tag    '//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' %>
+	<%= stylesheet_link_tag    '//fonts.googleapis.com/css?family=Alice&subset=latin,latin-ext' %>
+	<%= stylesheet_link_tag    '//fonts.googleapis.com/css?family=Raleway:400,300,200,700&subset=latin,latin-ext' %>
+	<%= stylesheet_link_tag    '//fonts.googleapis.com/css?family=Molengo&subset=latin,latin-ext' %>
+
 	<%= javascript_include_tag 'application' %>
+
 
 	<%= csrf_meta_tag %>
 
 	<link rel="icon" href="<%= url_for '/favicon.ico' %>">
 </head>
 
-<body>
-<div id="container">
+<body class="wsite-theme-light">
+<div id="wrapper"><div class="bg-wrapper">
 
-	<a id="top"></a><p class="hide">Skip to: <a href="#menu">site menu</a> | <a href="#sectionmenu">section menu</a> | <a href="#main">main content</a></p>
-
-	<div id="sitename">
-		<% if AppConfig.site_name_short %>
-			<h1><%= site_name(short: true) %></h1>
-			<span><%= site_name %></span>
-		<% else %>
-			<h1><%= site_name %></h1>
-		<% end %>
-		<a id="menu"></a>
+	<div id="header">
+		<div id="sitename"><span class="wsite-logo"><a href="<%= root_path %>">
+			<span id="wsite-title"><%= site_name %></span>
+		</a></span></div>
 	</div>
 
-	<div id="navitabs">
-		<h2 class="hide">Site menu:</h2>
-		<% uri = request.fullpath -%>
-		<%= navitab 'Welcome', url_for('/'), uri == '/' %>
-		<%= navitab "What's New!", url_for('/new'), uri.match(/^\/new/) %>
+	<div id="navigation">
+		<ul class="wsite-menu-default">
+			<% uri = request.fullpath -%>
+			<%= navitab 'Home', url_for('/'), uri == root_path %>
+			<%= navitab 'About', url_for('/about'), uri.match(/\/about/) %>
 
-		<%= navitab 'Books', books_path, uri.match(/\/books/) %>
-		<%= navitab 'Videos', videos_path, uri.match(/\/videos/) %>
+			<%= navitab "What's New!", url_for('/new'), uri.match(/^\/new/) %>
 
-		<%= navitab 'Tags', tags_path, uri.match(/\/tags/) %>
+			<%= navitab 'Books', books_path, uri.match(/\/books/) %>
+			<%= navitab 'Videos', videos_path, uri.match(/\/videos/) %>
 
-		<%= navitab 'Find Out More', url_for('/about'), uri.match(/\/about/) %>
-		<p class="hide"><a href="#top">Back to top</a></p>
+			<%= navitab 'Tags', tags_path, uri.match(/\/tags/) %>
+
+		</ul>
 	</div>
-	<div id="wrap1">
-		<div id="leftside">
-			<a id="sectionmenu"></a>
-			<%= render :partial => 'layouts/menublock' %>
-		</div>
 
-		<a id="main"></a>
-		<div id="contentalt">
-			<div class="main">
+	<div id="content-wrapper">
+		<div id="content"><div id="wsite-content" class="wsite-not-footer">
+
+			<div id="leftside">
+				<a id="sectionmenu"></a>
+				<%= render :partial => 'layouts/menublock' %>
+			</div>
+
+			<a id="main"></a>
+			<div class="main paragraph">
 				<% if flash[:notice] %>
 					<div class="flash notice">
 						<strong>Notice:</strong>
@@ -65,13 +70,11 @@
 
 				<%= yield %>
 
-				<p class="hide"><a href="#top">Back to top</a></p>
 			</div>
-		</div>
 
-		<div id="footer">Copyright 2009 Michael Edwards, Brendan Taylor (<a href="http://github.com/medwards/free-library-on-rails">source</a>) | Design by <a href="http://andreasviklund.com">Andreas Viklund</a></div>
+	</div></div>
 	</div>
-</div>
+</div></div>
 </body>
 
 </html>
