@@ -1,8 +1,14 @@
 module LayoutsHelper
-	def navitab(text, url, active)
+	def navitab(text, url, active, &bl)
 		li_opts = {}
 		li_opts[:id] = 'active' if active
-		content_tag(:li, link_to(text, url), **li_opts)
+		if not bl.present?
+			content_tag(:li, link_to(text, url), **li_opts)
+		else
+			li_opts[:class] = [li_opts[:class], 'submenu'].compact.join(' ')
+			submenu = content_tag(:ul, capture(&bl), class: 'submenu wsite-menu-default')
+			content_tag(:li, link_to(text, url) + submenu, **li_opts)
+		end
 	end
 
 	def page_title

@@ -1,3 +1,6 @@
+/*
+ * copied from inline style block main website
+ */
 .wsite-elements.wsite-not-footer div.paragraph, .wsite-elements.wsite-not-footer p, .wsite-elements.wsite-not-footer .product-block .product-title, .wsite-elements.wsite-not-footer .product-description, .wsite-elements.wsite-not-footer .wsite-form-field label, .wsite-elements.wsite-not-footer .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {font-family:"Molengo" !important;font-size:16px !important;line-height:26px !important;}
 #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {color:#2a2a2a !important;}
 .wsite-elements.wsite-footer div.paragraph, .wsite-elements.wsite-footer p, .wsite-elements.wsite-footer .product-block .product-title, .wsite-elements.wsite-footer .product-description, .wsite-elements.wsite-footer .wsite-form-field label, .wsite-elements.wsite-footer .wsite-form-field label{}
@@ -21,3 +24,27 @@
 .blog-header h2 a {color:#8d2424 !important;}
 #wsite-content h2.wsite-product-title {}
 .wsite-product .wsite-product-price a {}
+
+/*
+ * extra stuff we need here
+ */
+
+/* navigation separator */
+#navigation ul li.separator {
+	background-color: #d0d0d0;
+	vertical-align: middle;
+	bottom: .1em;
+	height: 1px;
+	width: 1em;
+	padding: 0;
+	margin: 0 14px;
+}
+
+/* navigation submenu */
+#navigation li { background-color: white; }
+#navigation ul.submenu { display: none; }
+#navigation li:hover ul.submenu, #navigation li:active ul.submenu { display: block; position: absolute; }
+#navigation li ul.submenu { margin-left: -14px; margin-top: 8px; border: 1px solid #f6f6f6; }
+#navigation li ul.submenu::before, #navigation li ul.submenu::after { display: none }
+#navigation ul.submenu li { width: 100px; text-align: left; display: block; }
+

@@ -31,28 +31,11 @@
 	</div>
 
 	<div id="navigation">
-		<ul class="wsite-menu-default">
-			<% uri = request.fullpath -%>
-			<%= navitab 'Home', url_for('/'), uri == root_path %>
-			<%= navitab 'About', url_for('/about'), uri.match(/\/about/) %>
-
-			<%= navitab "What's New!", url_for('/new'), uri.match(/^\/new/) %>
-
-			<%= navitab 'Books', books_path, uri.match(/\/books/) %>
-			<%= navitab 'Videos', videos_path, uri.match(/\/videos/) %>
-
-			<%= navitab 'Tags', tags_path, uri.match(/\/tags/) %>
-
-		</ul>
+		<%= render partial: 'layouts/menu' %>
 	</div>
 
 	<div id="content-wrapper">
 		<div id="content"><div id="wsite-content" class="wsite-not-footer">
-
-			<div id="leftside">
-				<a id="sectionmenu"></a>
-				<%= render :partial => 'layouts/menublock' %>
-			</div>
 
 			<a id="main"></a>
 			<div class="main paragraph">
@@ -68,6 +51,7 @@
 					</div>
 				<% end %>
 
+				<%= controller_side_links %>
 				<%= yield %>
 
 			</div>

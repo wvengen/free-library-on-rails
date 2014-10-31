@@ -78,7 +78,7 @@ module ApplicationHelper
 	# display controller-specific sidebar links, if they exist
 	# (they're stored in views/[controller]/_side_links.rhtml)
 	def controller_side_links
-		render :partial => 'side_links'
+		content_tag :div, render(:partial => 'side_links'), class: 'sidelinks'
 	rescue ActionView::ActionViewError
 		# partial was not found, don't add any links
 	end
