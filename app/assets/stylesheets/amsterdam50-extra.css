@@ -48,3 +48,8 @@
 #navigation li ul.submenu::before, #navigation li ul.submenu::after { display: none }
 #navigation ul.submenu li { width: 100px; text-align: left; display: block; }
 
+/* color fixes for light theme */
+.highlight { color: inherit; background-color: yellow; }
+
+/* tag editor input box height */
+div.tagsinput { line-height: 100%; }
