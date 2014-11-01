@@ -44,5 +44,22 @@ module FreeLibraryOnRails
 
 	# Enable the asset pipeline
 	config.assets.enabled = true
+
+	# allow to override smtp settings
+	ENV.each do |k,v|
+		if m = k.match(/^SMTP_(.*)$/)
+			k = m[1].downcase.to_sym
+			v = v.to_i if k == :port
+			v = v.to_sym if k == :authentication
+			v = (v!='false') if k == :enable_starttls_auto
+			config.action_mailer.smtp_settings ||= {}
+			config.action_mailer.smtp_settings[k] = v
+			config.action_mailer.delivery_method = :smtp
+		elsif m = k.match(/^SENDMAIL_(.*)$/)
+			config.action_mailer.sendmail_settings ||= {}
+			config.action_mailer.sendmail_settings[k] = v
+			config.action_mailer.delivery_method = :sendmail
+		end
+	end
   end
 end
