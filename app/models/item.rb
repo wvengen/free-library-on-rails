@@ -68,7 +68,12 @@ class Item < ActiveRecord::Base
 
 	# return the newest x items
 	def self.newest(x = 20)
-		self.find(:all, :limit => x, :order => 'created DESC')
+		self.limit(x).order('created DESC')
+	end
+
+	# return the most recent x lended items
+	def self.new_loans(x = 20)
+		self.includes(:lendings).merge(Loan.status(:lent)).limit(x).order('loans.id').uniq
 	end
 
 	def self.paginated_search_title page, terms, extra_conditions = nil, extra_terms = []

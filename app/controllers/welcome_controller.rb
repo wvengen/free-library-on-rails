@@ -16,7 +16,11 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 class WelcomeController < ApplicationController
-	def index; end
+	def index
+		@new_items = Item.newest
+		@new_loans = Item.new_loans
+	end
+
 	def about
 		@title = I18n.t 'welcome.about.title'
 	end
