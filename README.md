@@ -19,7 +19,7 @@ Here are some basic installation instructions.
    - `sudo apt-get install libxslt1-dev libsqlite3-dev libmysqlclient-dev`
    - `bundle install`
 
-2. `rake secret` --- copy this and place it as your session key secret in config/environment.rb
+2. for production: set environment variable `SECRET_TOKEN` to output of `rake secret`
 
 3. Setup the database
    - for production: in config/database.yml edit the database name, username and password.

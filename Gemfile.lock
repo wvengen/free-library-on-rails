@@ -32,6 +32,9 @@ GEM
     arel (3.0.3)
     builder (3.0.4)
     docile (1.1.5)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     geocoder (1.2.5)
@@ -111,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   app_config (~> 2.5.3)
+  dotenv-rails
   dynamic_form
   geocoder
   jquery-rails
