@@ -1,0 +1,25 @@
+<h2>Things I've Lent &amp; Loan Requests</h2>
+
+<% if items.empty? %>
+	<p>Nobody has borrowed or requested anything.</p>
+<% else %>
+	<table>
+		<tr><th>Title</th><th>Borrower</th><th>Status</th><th>Due Back</td></tr>
+		<% items.each do |l| %>
+			<tr>
+				<td><%= link_to (h l.item.title), l.item %></td>
+				<td><%=h l.borrower.login %></td>
+				<td><%=h l.status %></td>
+				<td><% if l.return_date? %>
+					<%=h l.return_date.strftime("%Y/%m/%d") %> 
+				<% end %></td>
+				<% if l.status == 'lent' %>
+					<td><%= button_to 'returned', loan_path(l), :method => :put %></td>
+				<% else %>
+					<td><%= render :partial => 'approval',
+							:locals => { :req => l } %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
