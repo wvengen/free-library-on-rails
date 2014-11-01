@@ -16,6 +16,12 @@
 	</tr>
 
 	<tr>
+		<td><label for="isbn">ISBN</label></td>
+		<td><%= text_field_tag 'item[isbn]',
+					@item.isbn,
+					:id => 'isbn', :disabled => true %></td>
+
+	<tr>
 		<td><label for="lcc_number">
 			<abbr title="Library of Congress Classification">LCC</abbr>
 		</label></td>
