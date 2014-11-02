@@ -2,7 +2,7 @@
 
 <table class="items">
 	<tr>
-		<th>cover</th>
+		<th></th>
 		<th>title</th>
 		<th>author</th>
 		<% if self.current_user %><th>owner</th><% end %>
@@ -10,7 +10,7 @@
 	</tr>
 	<% items.each do |item| %>
 		<tr>
-			<td><% if item.has_cover_image? %>
+			<td class="cover"><% if item.has_cover_image? %>
 				<a href="<%= polymorphic_path(item) %>"><%= cover_photo(item) %></a>
 			<% end %></td>
 

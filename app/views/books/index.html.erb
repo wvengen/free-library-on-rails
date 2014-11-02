@@ -5,7 +5,7 @@
 <% if @items.empty? %>
 	<p>No books found in this region.</p>
 <% else %>
-	<%= render 'items/item_table', :items => @items %>
+	<%= render 'items/item_blocks', :items => @items %>
 <% end %>
 
 <%= will_paginate @items %>

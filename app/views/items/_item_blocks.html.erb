@@ -1,0 +1,11 @@
+<% including ||= [] %>
+
+<div class="items blocks">
+	<% items.each do |item| %>
+		<div class="item">
+			<a href="<%= polymorphic_path(item) %>" class="cover"><%= cover_photo(item) %></a>
+		</div>
+	<% end %>
+</div>
+
+<div style="clear: both;"></div>

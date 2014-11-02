@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
 		@items = region.items.
 					where(:type => itemclass.to_s).
 					order(@order).
-					paginate(:page => params[:page])
+					paginate(:page => params[:page], :per_page => 28) # 7x4=28, 4 rows of blocks
 	end
 
 	def show
