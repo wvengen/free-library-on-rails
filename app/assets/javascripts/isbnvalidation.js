@@ -43,10 +43,12 @@ function checkISBN13(isbn) {
 };
 
 function validateISBN(isbnInput) {
-	var isbn = isbnInput.val();
+	var isbn = isbnInput.val().trim();
 
 	var verdict = "bad length";
-	if (isbn.length == 10) {
+	if (isbn.length == 0) {
+		verdict = "";
+	} else if (isbn.length == 10) {
 		if(checkISBN10(isbn))
 			verdict = "good";
 		else
@@ -58,5 +60,8 @@ function validateISBN(isbnInput) {
 			verdict = "bad checksum";
 	}
 
-	$("#isbn-validation").text(verdict);
+	$("#isbn-validation")
+		.toggleClass('good', verdict=="good")
+		.toggleClass('error', verdict!="good")
+		.text(verdict);
 }
