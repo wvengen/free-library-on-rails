@@ -19,11 +19,13 @@
 	<h2>Comments</h2>
 <% end %>
 
-<% unless @user.comments.empty? %>
+<% if @user.comments.empty? %>
+<p>No one has given a comment yet.</p>
+<% else %>
 	<% @user.comments.each do |c| %>
 		<div class="comment" style="margin-bottom: 1em;">
-			<p><%= simple_format c.text %></p>
-			<p class="byline">-- <%= user_link(c.author) %> <%= c.created.strftime("%Y-%m-%d") %></p>
+			<p><%= c.text %> (<%= user_link(c.author) %> <%= c.created.strftime("%Y-%m-%d") %>)</p>
+			</p>
 		</div>
 	<% end %>
 <% end %>
@@ -31,15 +33,15 @@
 <% if current_user %>
 	<%= form_tag comments_user_path(@user.login), :method => 'post' do %>
 		<label style="vertical-align: top">Write a comment:
-			<textarea name="text" rows="7" cols="30" ></textarea>
+			<textarea name="text" rows="4" cols="40" ></textarea>
 		</label><br>
 		<input type="submit" value="Comment" style="margin-left: 3em; margin-top: 1em;">
 	<% end %>
 
 	<% if current_user == @user %>
-		<ul class="formats">
-			<li><%= link_to 'csv', user_path(@user.login, :format => 'csv') %></li>
-		</ul>
+		<div class="sidelinks">
+			<%= link_to 'csv', user_path(@user.login, :format => 'csv') %>
+		</div>
 	<% end %>
 <% end %>
 
