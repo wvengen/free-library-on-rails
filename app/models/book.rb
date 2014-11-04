@@ -61,7 +61,7 @@ class Book < Item
 		book.author_first = data[:author_first]
 		book.author_last  = data[:author_last]
 		book.cover_url    = data[:cover_url]
-		book.tag_with(data[:tags])
+		#book.tag_with(data[:tags])
 
 		book
 	end
