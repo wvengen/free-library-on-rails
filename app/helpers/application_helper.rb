@@ -78,9 +78,21 @@ module ApplicationHelper
 	# display controller-specific sidebar links, if they exist
 	# (they're stored in views/[controller]/_side_links.rhtml)
 	def controller_side_links
-		content_tag :div, render(:partial => 'side_links'), class: 'sidelinks'
+		content_tag :div, class: 'sidelinks' do
+			render(:partial => 'side_links') + content_for(:side_links)
+		end
 	rescue ActionView::ActionViewError
 		# partial was not found, don't add any links
+	end
+
+	# add a sidelink
+	def sidelink text, path, html_options={}
+		content_for :side_links do
+			if icon = html_options.delete(:icon)
+				text = image_tag("/images/icons/#{icon}.gif", alt: text) + text
+			end
+			link_to text, path, html_options
+		end
 	end
 
 	# turn a distance in km into something human-readable

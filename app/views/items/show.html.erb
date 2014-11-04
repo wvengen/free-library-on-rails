@@ -1,8 +1,6 @@
 <% if @item.owned_by? session[:user] %>
-	<div class="itemActions">
-		<%= link_to image_tag("/images/icons/edit.gif", :title => "edit"), edit_polymorphic_path(@item) %>
-		<%= link_to image_tag("/images/icons/delete.gif", :title => "delete"), {}, { :method => :delete, :confirm => "Are you sure you want to delete this item?" } %>
-	</div>
+	<%= sidelink 'edit', edit_polymorphic_path(@item), icon: 'edit' %>
+	<%= sidelink 'delete', nil, icon: 'delete', method: :delete, confirm: "Are you sure you want to delete this item?" %>
 <% end %>
 
 <h1><%= image_tag("/images/icons/#{@item.type}.png") %> <%= @item.title %></h1>
@@ -27,16 +25,15 @@
 <table>
 	<% if current_user %>
 	<tr><th>owner:</th>
-		<td><%= user_link @item.owner %></td></tr>
+		<td>
+			<%= user_link @item.owner %>
+			(<%= distance(@item.owner.distance_from(current_user)) %>)
+		</td></tr>
 	<% end %>
 	<tr><th>tags:</th>
-		<td><% @item.taggings.each_with_index do |t,i| %>
-			<%= ',' unless i.zero? %><%= link_to(t, tag_path(t.to_s)) %>
-		<% end %></td></tr>
-	<% if current_user %>
-	<tr><th>distance:</th>
-		<td><%= distance(@item.owner.distance_from(current_user)) %></td></tr>
-	<% end %>
+		<td><% @item.taggings.each_with_index do |t,i| %><%=
+			    ', ' unless i.zero? %><%= link_to(t, tag_path(t.to_s)) %><%
+		   end %></td></tr>
 
 	<%= default_content_for :additional_fields do %><% end %>
 </table>

@@ -136,6 +136,8 @@ table.items .cover img {
 	display: block;
 	float: right;
 }
+.sidelinks a { margin-left: 0.8em; }
+.sidelinks a img { margin-right: 2px; }
 
 /* columned content */
 .two-columns, .three-columns { margin: auto; }
