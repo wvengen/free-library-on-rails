@@ -90,7 +90,7 @@ module ApplicationHelper
 
 	def cover_photo item
 		if item.has_cover_image?
-			image_tag "/images/items/books/#{item.isbn}.jpg", :class => 'cover_photo', :alt => ''
+			image_tag item.cover_url, :class => 'cover_photo', :alt => ''
 		else
 			render partial: "#{item.class.model_name.plural}/item", locals: {item: item}
 		end
