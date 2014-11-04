@@ -48,6 +48,9 @@
 #navigation li ul.submenu::before, #navigation li ul.submenu::after { display: none }
 #navigation ul.submenu li { width: 100px; text-align: left; display: block; }
 
+/* sidelink buttons */
+.sidelinks a { padding: 10px 14px; background-color: #f6f6f6; color: #484848; }
+
 /* color fixes for light theme */
 .highlight { color: inherit; background-color: yellow; }
 

@@ -38,7 +38,7 @@
 		<div id="content"><div id="wsite-content" class="wsite-not-footer">
 
 			<a id="main"></a>
-			<div class="main paragraph">
+			<div class="main">
 				<% if flash[:notice] %>
 					<div class="flash notice">
 						<strong>Notice:</strong>
@@ -52,7 +52,9 @@
 				<% end %>
 
 				<%= controller_side_links %>
+				<div class="paragraph">
 				<%= yield %>
+				</div>
 
 			</div>
 
