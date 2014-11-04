@@ -14,7 +14,7 @@ development: &defaults
   # Key for retrieving book info using the ISBNDB API.
   ISBNDB_KEY: PJ6X926W
   # Whether to ask members for phone number and send sms on loan request
-  use_sms: true
+  use_sms: false
   # Mail configuration
   mail_from: bookcommunity@amsterdam50.nl
   mail_url_options:
