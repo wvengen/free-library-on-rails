@@ -19,7 +19,7 @@ class BooksController < ItemsController
 	def itemclass; Book end
 
 	def create
-		if params[:submit] == I18n.t('books.isbn lookup.button name')
+		if params[:lookup_isbn]
 			self.isbnLookup params[:item][:isbn]
 		else
 			super
