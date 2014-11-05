@@ -18,9 +18,9 @@ development: &defaults
   # How new members can get an account: 'public' or by 'invite'
   signup: invite
   # Mail configuration
-  mail_from: bookcommunity@amsterdam50.nl
+  mail_from: org-a50books@willem.engen.nl
   mail_url_options:
-    host: books.amsterdam50.nl
+    host: a50books.herokuapp.com
 
 production:
   <<: *defaults
