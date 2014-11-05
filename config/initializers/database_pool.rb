@@ -1,0 +1,16 @@
+# http://blog.craz8.com/articles/2013/6/19/make-your-rails-application-multi-threaded
+# http://blog.codeship.io/2013/10/16/unleash-the-puma-on-heroku.html
+if Rails.env.production? or Rails.env.staging?
+  Rails.application.config.after_initialize do
+    ActiveRecord::Base.connection_pool.disconnect!
+   
+    ActiveSupport.on_load(:active_record) do
+    if Rails.application.config.database_configuration
+      config = Rails.application.config.database_configuration[Rails.env]
+      config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds
+      config['pool']              = ENV['DB_POOL']      || 8
+      ActiveRecord::Base.establish_connection(config)
+    end
+    end
+  end
+end

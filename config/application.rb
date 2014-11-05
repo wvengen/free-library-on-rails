@@ -45,6 +45,9 @@ module FreeLibraryOnRails
 	# Enable the asset pipeline
 	config.assets.enabled = true
 
+	# We use threaded Puma - hope it's allright :o
+	config.threadsafe!
+
 	# allow to override smtp settings
 	ENV.each do |k,v|
 		if m = k.match(/^SMTP_(.*)$/)
