@@ -20,6 +20,9 @@ gem 'tagsinput-rails'
 
 group :development, :test do
   gem 'dotenv-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
   gem 'sqlite3' # for tests
   gem 'simplecov', :require => false
 end
