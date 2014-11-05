@@ -40,6 +40,7 @@ en:
   users:
     email:
       prefix:         "[%{site_name_short}]"
+      invitation:     "Invitation to join %{site_name}"
       signup:         "%{site_name} Account Request"
       password reset: "Password Reset Request"
   account:
@@ -55,10 +56,16 @@ en:
         logged in:  "Logged in successfully."
         not activated:  "Couldn't log you in. You haven't activated your account."
         check user and password: "Couldn't log you in. Check your username and password."
+    invite:
+      title: "Sending an Invitation"
+      message:
+        email sent: "An invitation has been sent."
     signup:
       title:  "Signing Up"
       message:
         email sent: "Thanks for signing up! We sent you an email with instructions on how to continue."
+        not public: "Signup for %{site_name} is not public. Please ask an existing member to invite you."
+        wrong key: "This is not a valid invitation. Please ask an existing member to invite you."
     reset password:
       message:
         email sent:   "An email has been sent containing your new password."

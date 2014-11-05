@@ -28,6 +28,15 @@ class UserNotifier < ActionMailer::Base
 		mail :to => user.email, :subject => @subject
 	end
 
+	def invitation_notification(invitation)
+		setup_email(nil)
+		@subject	+= I18n.t('users.email.invitation', site_name: site_name)
+		@url		= signup_url(token: invitation.token)
+		@invitation	= invitation
+
+		mail :to => invitation.email, :subject => @subject
+	end
+
 	def password_reset_notification(user, new_password)
 		setup_email(user)
 		@subject += I18n.t 'users.email.password reset'

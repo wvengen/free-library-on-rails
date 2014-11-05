@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "item_taggings", :force => true do |t|
     t.integer "thing_id", :null => false
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 16) do
     t.datetime "created",   :null => false
     t.text     "text",      :null => false
   end
+
+  create_table "user_invitations", :force => true do |t|
+    t.integer  "invited_by_id"
+    t.string   "email"
+    t.string   "message"
+    t.string   "token",         :null => false
+    t.datetime "expires_at",    :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "user_invitations", ["token"], :name => "index_user_invitations_on_token", :unique => true
 
   create_table "user_taggings", :force => true do |t|
     t.integer "thing_id", :null => false

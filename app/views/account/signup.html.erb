@@ -3,6 +3,8 @@
 <%= error_messages_for(:user).untaint %>
 
 <%= form_for :user do |f| -%>
+<%= hidden_field_tag :token, params[:token] if params[:token] %>
+
 <p><label for="login">Login</label><br/>
 <%= f.text_field :login %></p>
 

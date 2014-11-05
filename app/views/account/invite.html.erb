@@ -1,0 +1,17 @@
+<h1>Send an invitation</h1>
+
+<%= error_messages_for(:invitation).untaint %>
+
+<p>When you've met someone who wants to join <%= site_name %> enter their email address here. <br>
+They will receive an email with signup instructions and, optionally, your personal message.</p>
+
+<%= form_for :invitation do |f| -%>
+
+<p><label for="email">Email</label><br/>
+<%= f.text_field :email %></p>
+
+<p><label for="message">Message (optional)</label><br/>
+<%= f.text_area :message, rows: 4 %></p>
+
+<p><%= submit_tag 'Send invitation' %></p>
+<% end -%>

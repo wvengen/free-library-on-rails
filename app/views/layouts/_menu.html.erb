@@ -14,6 +14,7 @@
 			<%= navitab 'Profile', user_path(current_user.login), uri.match(/\/users\/#{current_user.login}$/) %>
 			<%= navitab 'Loans', loans_url, uri.match(/\/loans/) %>
 			<%= navitab 'Settings', url_for('/account'), uri.match(/\/account$/) %>
+			<%= navitab 'Invite', url_for('/account/invite'), uri.match(/\/account\/invite$/) if AppConfig.signup == 'invite' %>
 			<%= navitab 'Log out', url_for('/account/logout'), false %>
 		<% end %>
 	<% else %>

@@ -1,0 +1,11 @@
+You have been invited to join!
+
+<% if @invitation.message.present? %>
+<%= @invitation.message %>
+
+<% end %>
+To accept this invitation, please go to the following page
+and create your account:
+
+  <%= @url %>
+

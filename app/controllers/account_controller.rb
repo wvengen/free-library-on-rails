@@ -20,6 +20,7 @@ class AccountController < ApplicationController
 	before_filter :login_from_cookie
 
 	before_filter :login_required, :only => [ :update ]
+	before_filter :public_signup_or_invite_required, :only => [ :signup ]
 
 	# say something nice, you goof! something sweet.
 	def index
@@ -90,15 +91,35 @@ class AccountController < ApplicationController
 		@user = User.new(params[:user])
 		@user.login = params[:user][:login]
 
-		@user.save!
-
-		UserNotifier.signup_notification(@user).deliver
+		User.transaction do
+			@user.save!
+			UserNotifier.signup_notification(@user).deliver
+			@invitation.destroy if @invitation
+		end
 
 		flash[:notice] = I18n.t 'account.signup.message.email sent'
 
 		redirect_back_or_default(:controller => 'welcome', :action => 'index')
 	rescue ActiveRecord::RecordInvalid
 		render :action => 'signup'
+	end
+
+	def invite
+		@title = I18n.t 'account.invite.title'
+		@invitation = UserInvitation.new params[:invitation]
+		@invitation.invited_by_id = self.current_user.id
+		return unless request.post?
+
+		UserInvitation.transaction do
+			@invitation.save!
+			UserNotifier.invitation_notification(@invitation).deliver
+		end
+
+		flash[:notice] = I18n.t 'account.invite.message.email sent'
+
+		redirect_back_or_default(:controller => 'welcome', :action => 'index')
+	rescue ActiveRecord::RecordInvalid
+		render :action => 'invite'
 	end
 
 	def reset_password
@@ -139,4 +160,23 @@ class AccountController < ApplicationController
 			redirect_to(:controller => 'account', :action=> 'login')
 		end
 	end
+
+	private
+
+	def public_signup_or_invite_required
+		if AppConfig.signup == 'public'
+			# public signup is always ok
+			return
+		elsif params[:token].present?
+			# check if key is in the database
+			@invitation = UserInvitation.where(token: params[:token]).first
+			return if @invitation.present? && @invitation.valid_invitation?
+			flash[:error] = I18n.t 'account.signup.message.wrong key'
+		else
+			# if there's no key, tell them that they need an invitation
+			flash[:error] = I18n.t 'account.signup.message.not public', site_name: AppConfig.site_name
+		end
+		redirect_back_or_default(:controller => 'welcome', :action => 'index')
+	end
+
 end
