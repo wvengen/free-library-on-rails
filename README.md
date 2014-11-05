@@ -4,6 +4,9 @@ Free Library on Rails
 This is an open source web application for organising a
 [distributed library](https://en.wikipedia.org/wiki/Distributed_library).
 
+This version is a fork of the original [free-library-on-rails](https://github.com/medwards/free-library-on-rails)
+that's adapted for use by Amsterdam50.
+
 
 Installation
 ------------
