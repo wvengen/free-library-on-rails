@@ -3,12 +3,12 @@
 <div class="two-columns">
 	<div class="column"><div class="content">
 		<h2>Recent additions</h2>
-		<%= render :partial => 'items/item_blocks', :locals => { :items => @new_items } %>
+		<%= render :partial => 'items/item_blocks', :locals => { :items => @new_items.limit(9) } %>
 	</div></div>
 
 	<div class="column"><div class="content">
 		<h2>Recent loans</h2>
-		<%= render :partial => 'items/item_blocks', :locals => { :items => @new_loans } %>
+		<%= render :partial => 'items/item_blocks', :locals => { :items => @new_loans.limit(9) } %>
 	</div></div>
 </div>
 
