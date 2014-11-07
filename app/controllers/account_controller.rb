@@ -93,7 +93,7 @@ class AccountController < ApplicationController
 
 		User.transaction do
 			@user.save!
-			UserNotifier.signup_notification(@user).deliver
+			UserMailer.signup_notification(@user).deliver
 			@invitation.destroy if @invitation
 		end
 
@@ -112,7 +112,7 @@ class AccountController < ApplicationController
 
 		UserInvitation.transaction do
 			@invitation.save!
-			UserNotifier.invitation_notification(@invitation).deliver
+			UserMailer.invitation_notification(@invitation).deliver
 		end
 
 		flash[:notice] = I18n.t 'account.invite.message.email sent'
