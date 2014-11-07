@@ -50,6 +50,5 @@ class LoanMailer < ApplicationMailer
 
 		# FIXME: don't hardcode urls, blah blah blah
 		@item_url	= polymorphic_url(loan.item)
-		@loans_url	= loans_url
 	end
 end
