@@ -1,10 +1,10 @@
 <h1>You have been invited to join <%= AppConfig.site_name %>!</h1>
 
-<p><%= @invitation.user.login %> has invited you to join <%= AppConfig.site_name %>.</p>
+<p><%= @invitation.invited_by.login %> has invited you to join <%= AppConfig.site_name %>.</p>
 
 <% if @invitation.message.present? %><p><%= @invitation.message %></p><% end %>
 
 <p><%= link_to "Accept invitation", @url, class: 'btn-primary' %></p>
 
-<p>This invitation is valid until <%= @invitation.expires_at.date %>.
+<p>This invitation is valid until <%= @invitation.expires_at.to_date %>.
 To read more, please <%= link_to "visit the website", root_url %>.</p>

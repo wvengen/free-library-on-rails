@@ -107,7 +107,7 @@ class AccountController < ApplicationController
 	def invite
 		@title = I18n.t 'account.invite.title'
 		@invitation = UserInvitation.new params[:invitation]
-		@invitation.invited_by_id = self.current_user.id
+		@invitation.invited_by = self.current_user
 		return unless request.post?
 
 		UserInvitation.transaction do
