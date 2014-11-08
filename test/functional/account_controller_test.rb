@@ -28,13 +28,14 @@ class AccountControllerTest < ActionController::TestCase
 		assert_response :success
 	end
 
-	def test_show_signup
+	def test_show_public_signup
+		AppConfig.signup = 'public'
 		get :signup
-
 		assert_response :success
 	end
 
-	def test_do_signup
+	def test_do_public_signup
+		AppConfig.signup = 'public'
 		assert_difference(User, :count, 1) do
 			post :signup, :user => { :login => 'stnick',
 									 :email => 'nick@example.org',
@@ -48,7 +49,67 @@ class AccountControllerTest < ActionController::TestCase
 		assert_redirected_to root_path
 
 		nick = User.find_by_login('stnick')
+	end
 
+	def test_show_invite_signup_denied
+		AppConfig.signup = 'invite'
+		get :signup
+		assert_response 302
+	end
+
+	def test_show_invite_signup_success
+		AppConfig.signup = 'invite'
+		invite = UserInvitation.create expires_at: 1.day.from_now, email: 'foo@example.org', invited_by: User.first
+		get :signup, :token => invite.token
+		assert_response :success
+	end
+
+	def test_do_invite_signup_denied
+		AppConfig.signup = 'invite'
+		assert_difference(User, :count, 0) do
+			post :signup, :user => { :login => 'stnick',
+									 :email => 'nick@example.org',
+									 :password => 'elves',
+									 :password_confirmation => 'elves',
+									 :postalcode => 'H0H 0H0',
+									 :longitude => '0.12',
+									 :latitude => '1.23' }
+		end
+		assert_response 302
+	end
+
+	def test_do_invite_signup_success
+		AppConfig.signup = 'invite'
+		invite = UserInvitation.create expires_at: 1.day.from_now, email: 'foo@example.org', invited_by: User.first
+		assert_difference(User, :count, 1) do
+			post :signup, :user => { :login => 'stnick',
+									 :email => 'nick@example.org',
+									 :password => 'elves',
+									 :password_confirmation => 'elves',
+									 :postalcode => 'H0H 0H0',
+									 :longitude => '0.12',
+									 :latitude => '1.23' }, :token => invite.token
+		end
+
+		assert_redirected_to root_path
+
+		nick = User.find_by_login('stnick')
+	end
+
+	def test_show_invite
+		login_as 'bct'
+		get :invite
+
+		assert_response :success
+	end
+
+	def test_do_invite
+		login_as 'bct'
+		assert_difference(UserInvitation, :count, 1) do
+			post :invite, :invitation => { :email => 'nick@example.org' }
+		end
+
+		assert_response 302
 	end
 
 	def test_login
