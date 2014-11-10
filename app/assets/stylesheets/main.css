@@ -130,6 +130,11 @@ table.items .cover img {
 	padding-right: 5em;
 }
 
+h1 .librarian {
+	font-size: 60%;
+	font-weight: normal;
+}
+
 /* sidelinks */
 .sidelinks {
 	list-style-type: none;

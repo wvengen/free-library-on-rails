@@ -84,7 +84,7 @@ module ApplicationHelper
 	# (they're stored in views/[controller]/_side_links.rhtml)
 	def controller_side_links
 		content_tag :div, class: 'sidelinks' do
-			render(:partial => 'side_links') + content_for(:side_links)
+			(render(:partial => 'side_links') rescue ''.html_safe) + content_for(:side_links)
 		end
 	rescue ActionView::ActionViewError
 		# partial was not found, don't add any links

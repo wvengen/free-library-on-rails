@@ -43,6 +43,7 @@ en:
       invitation:     "Invitation to join %{site_name}"
       signup:         "%{site_name} Account Request"
       password reset: "Password Reset Request"
+      librarian:      "You've become a librarian!"
   account:
     index:
       title:  "Editing Settings"
@@ -82,6 +83,10 @@ en:
       message:
         sent:     "Check your mailbox in a couple of minutes."
         not sent: "This account does not need to be activated."
+    librarian:
+      message:
+        made librarian:    "%{user} is now a librarian. It would be great if you could help him or her on the way."
+        already librarian: "%{user} is already a librarian."
   books:
     isbn lookup:
       button name:  "Lookup"
