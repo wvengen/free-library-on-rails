@@ -67,6 +67,8 @@ class User < ActiveRecord::Base
 
 	has_many :comments, :class_name => 'UserComment'
 
+	scope :librarians, ->{ where('librarian_since IS NOT NULL') }
+
 	# gets all the tags this user has used and how many times they've used them
 	# sorted with most occurances first
 	def tag_counts

@@ -13,6 +13,7 @@
 </div>
 
 <% if current_user %>
-	<p>We have <%= User.count %> members: <%= User.order('activated_at DESC').map{|u| user_link(u)}.join(", ").html_safe %>.</p>
+	<p>We have <%= User.count %> members: <%= User.order('activated_at DESC').map{|u| user_link(u)}.join(", ").html_safe %>.
+	Our librarians are: <%= User.librarians.map{|u| user_link(u)}.join(", ").html_safe %>.</p>
 <% end %>
 
