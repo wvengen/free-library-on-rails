@@ -33,6 +33,9 @@ class AccountController < ApplicationController
 	def update
 		@user = current_user
 
+		# make sure users cannot make themselves a librarian
+		params[:user][:librarian] = nil if params[:user].include?(:librarian)
+
 		# XXX user-specifiable attributes should be whitelisted, not
 		# blacklisted with attr_protected like they are now
 		if not @user.update_attributes(params[:user])
