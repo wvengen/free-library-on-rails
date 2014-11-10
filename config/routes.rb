@@ -33,6 +33,7 @@ FreeLibraryOnRails::Application.routes.draw do
 	match '/account/login' => 'account#login', :as => :login
 	match '/account/signup' => 'account#signup', :as => :signup
 	match '/account/invite' => 'account#invite', :as => :invite
+	post '/account/leave_librarian' => 'account#leave_librarian', :as => :leave_librarian
 	post '/account/activate' => 'account#request_activation', :as => :request_activation
 	get '/account/activate/:id' => 'account#activate', :as => :activate
 

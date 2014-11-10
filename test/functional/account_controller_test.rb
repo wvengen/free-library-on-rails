@@ -269,7 +269,7 @@ class AccountControllerTest < ActionController::TestCase
 
 	def test_librarian_giveup
 		login_as 'john'
-		post :update, :user => { :librarian_since => nil }
+		post :leave_librarian
 
 		john = User.find_by_login('john')
 		assert_equal false, john.librarian?
