@@ -69,6 +69,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     multi_json (1.10.1)
+    nameable (1.0.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     pg (0.17.1)
@@ -150,6 +151,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   letter_opener
+  nameable
   nokogiri
   pg
   pony
