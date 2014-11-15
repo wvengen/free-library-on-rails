@@ -19,7 +19,7 @@ Here are some basic installation instructions.
      [mod_passenger](https://www.phusionpassenger.com/).
 
 1. Install dependencies.
-   - `sudo apt-get install libxslt1-dev libsqlite3-dev libmysqlclient-dev`
+   - `sudo apt-get install libxslt1-dev libpq-dev libsqlite3-dev`
    - `bundle install`
 
 2. for production: set environment variable `SECRET_TOKEN` to output of `rake secret`

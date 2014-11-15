@@ -1,6 +1,6 @@
-<%= sidelink 'Word cloud', tags_path(as: :wordcloud) %>
+<%= sidelink 'Tag cloud', tags_path(as: :cloud) %>
 <%= sidelink 'Tag list', tags_path(as: :list) %>
-<h1>Tag cloud</h1>
+<h1>Word cloud</h1>
 
 <div id="wordcloud" style="margin: auto"></div>
 
@@ -10,8 +10,9 @@
   Wordcloud.fill = d3.scale.ordinal().range(["#67001f","#b2182b","#d6604d","#f4a582","#92c5de","#4393c3","#2166ac","#053061"]); // modified RdBu[11]
   Wordcloud.width = 800;
   Wordcloud.height = 400;
-  Wordcloud.words = <%= raw @tag_counts.map{|tag,count| {text: tag, size: count, href: tag_path(tag)}}.to_json %>;
+  Wordcloud.words = <%= raw @word_counts.map{|r| {text: r['word'], size: r['ndoc'], href: search_items_path(q: r['word'])}}.to_json %>;
   Wordcloud.init();
 </script>
 
+<p>This picture contains an overview of word stems used in all descriptions and titles.</p>
 
