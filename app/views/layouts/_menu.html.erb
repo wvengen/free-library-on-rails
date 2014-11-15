@@ -8,6 +8,7 @@
 	<%= navitab 'Tags', tags_path, uri.match(/\/tags/) do %>
 		<%= navitab 'List', tags_path(as: :list), false %>
 		<%= navitab 'Cloud', tags_path(as: :cloud), false %>
+		<%= navitab 'Words', tags_path(as: :wordcloud), false %>
 	<% end %>
 
 	<li class="separator"></li>
