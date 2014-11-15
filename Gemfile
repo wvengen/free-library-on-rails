@@ -16,6 +16,8 @@ gem 'pony' # required by sms_fu, not in its gemspec >:(
 gem 'geocoder'
 gem 'nameable'
 
+gem 'd3-rails'
+
 # assets
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
