@@ -19,7 +19,12 @@ class TagsController < ApplicationController
 	def index
 		@title = I18n.t 'tags.index.title'
 		@tag_counts = ItemTagging.counts
-		render (%w(cloud).include?(params[:as]) ? params[:as] : 'index')
+		if params[:as] == 'cloud'
+			render 'cloud'
+		elsif params[:as] == 'wordcloud'
+			@word_counts = word_counts
+			render 'wordcloud'
+		end
 	end
 
 	def show
@@ -34,5 +39,25 @@ class TagsController < ApplicationController
 	def autocomplete
 		@tags = Tag.search(params[:term]||params[:q]).paginate(:page => params[:page])
 		render json: @tags.map(&:name)
+	end
+
+	protected
+
+	def word_counts
+		# TODO only on postgresql
+		# TODO rewrite in AR
+		# TODO get possible regconfig values from information_schema or somewhere else
+		@word_counts ||= ActiveRecord::Base.connection.execute("""
+			SELECT * FROM ts_stat('
+				SELECT to_tsvector(COALESCE(tags.name,''english'')::regconfig, title)||to_tsvector(COALESCE(tags.name,''english'')::regconfig, description)
+					FROM items
+					LEFT OUTER JOIN item_taggings ON items.id = item_taggings.thing_id
+					LEFT OUTER JOIN tags ON tags.id = item_taggings.tag_id
+					WHERE (tags.name IN
+						(''danish'',''dutch'',''english'',''finnish'',''french'',''german'',''hungarian'',''italian'',
+						 ''norwegian'',''portugese'',''romanian'',''russian'',''spanish'',''swedish'',''turkish'')
+						OR tags.name IS NULL)
+			') ORDER BY ndoc DESC LIMIT 500
+		""")
 	end
 end
