@@ -12,7 +12,7 @@ var Wordcloud = (function(wc, d3) {
   wc.scale = 'sqrt';
   wc.spiral = 'archimedean';
   wc.fill = d3.scale.category20b();
-  wc.padding = 5;
+  wc.padding = 3;
   wc.transitionDuration = 200;
   // width and height can be a function or pixels
   wc.width = function() { return window.innerWidth; };
@@ -34,7 +34,7 @@ var Wordcloud = (function(wc, d3) {
     var h = wc._height();
     layout = d3.layout.cloud()
 	  .spiral(wc.spiral)
-      .timeInterval(Infinity)
+      .timeInterval(10)
       .size([w, h])
 	  .padding(wc.padding)
       .fontSize(function(d) {

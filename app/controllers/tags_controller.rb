@@ -19,6 +19,7 @@ class TagsController < ApplicationController
 	def index
 		@title = I18n.t 'tags.index.title'
 		@tag_counts = ItemTagging.counts
+		render (%w(cloud).include?(params[:as]) ? params[:as] : 'index')
 	end
 
 	def show
