@@ -5,7 +5,10 @@
 
 	<%= navitab 'Books', books_path, uri.match(/\/books/) %>
 
-	<%= navitab 'Tags', tags_path, uri.match(/\/tags/) %>
+	<%= navitab 'Tags', tags_path, uri.match(/\/tags/) do %>
+		<%= navitab 'List', tags_path(as: :list), false %>
+		<%= navitab 'Cloud', tags_path(as: :cloud), false %>
+	<% end %>
 
 	<li class="separator"></li>
 
