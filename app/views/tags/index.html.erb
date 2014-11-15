@@ -1,7 +1,7 @@
 <%= sidelink 'Tag cloud', tags_path(as: :cloud) %>
 <h1>Tag list</h1>
 
-<ul>
+<ul class="tags">
 <% @tag_counts.each do |tag,count| %>
 	<li><%= link_to h(tag), tag_path(h(tag)) %> (<%=h count %>)</li>
 <% end %>

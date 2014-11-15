@@ -64,3 +64,7 @@ div.tagsinput { line-height: 100%; }
 .flash { border: 0; padding: 0.5em 1em; margin-bottom: 0.8em; }
 .flash.error { background: #f6f6f6; color: #8d2424; }
 .flash.notice { background: #f6f6f6; color: black; }
+
+/* tag list styling */
+ul.tags, div.paragraph ul.tags { margin: 0 !important; padding: 0 !important; margin-top: 2ex !important; }
+ul.tags li { border: 1px solid #f6f6f6; margin: 2px !important; }
