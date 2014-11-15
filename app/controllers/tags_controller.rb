@@ -49,12 +49,14 @@ class TagsController < ApplicationController
 		# TODO get possible regconfig values from information_schema or somewhere else
 		@word_counts ||= ActiveRecord::Base.connection.execute("""
 			SELECT * FROM ts_stat('
-				SELECT to_tsvector(tags.name::regconfig, title)||to_tsvector(tags.name::regconfig, description) FROM items
-				  LEFT JOIN item_taggings ON items.id = item_taggings.thing_id
-				  LEFT JOIN tags ON tags.id = item_taggings.tag_id
-			      WHERE tags.name IN
-					(''danish'',''dutch'',''english'',''finnish'',''french'',''german'',''hungarian'',''italian'',
-					 ''norwegian'',''portugese'',''romanian'',''russian'',''spanish'',''swedish'',''turkish'')
+				SELECT to_tsvector(COALESCE(tags.name,''english'')::regconfig, title)||to_tsvector(COALESCE(tags.name,''english'')::regconfig, description)
+					FROM items
+					LEFT OUTER JOIN item_taggings ON items.id = item_taggings.thing_id
+					LEFT OUTER JOIN tags ON tags.id = item_taggings.tag_id
+					WHERE (tags.name IN
+						(''danish'',''dutch'',''english'',''finnish'',''french'',''german'',''hungarian'',''italian'',
+						 ''norwegian'',''portugese'',''romanian'',''russian'',''spanish'',''swedish'',''turkish'')
+						OR tags.name IS NULL)
 			') ORDER BY ndoc DESC LIMIT 500
 		""")
 	end
