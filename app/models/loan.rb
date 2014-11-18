@@ -28,7 +28,7 @@ class Loan < ActiveRecord::Base
 	belongs_to :item
 	belongs_to :borrower, :class_name => 'User'
 
-	scope :status, ->(s){ where(status: I18n.t("loans.status.#{s}")) }
+	scope :status, ->(s){ where(status: Array(s).map{|s| I18n.t("loans.status.#{s}")}) }
 	scope :approved, -> { where(status: %w(approved lent returned).map {|s| I18n.t("loans.status.#{s}")}) }
 
 	def owner
