@@ -1,3 +1,3 @@
 //= require d3
 //= require d3.layout.cloud
-//= require wordcloud
+//= require d3.wordcloud
